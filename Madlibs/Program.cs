@@ -99,9 +99,9 @@ namespace Madlibs
         {
             int x = 0;
             string madLib = "";
-            madLib= "There was a boy named"+qAs[x].Answer+".\n"+ qAs[x].Answer+" liked to"+ qAs[x+1].Answer +" his pet" + qAs[x + 2].Answer+" named "+ qAs[x + 3].Answer +" "+ qAs[x + 4].Answer+".\n" +
-                                  "One day " + qAs[x + 3].Answer + qAs[x + 4].Answer+" to the "+qAs[x + 5].Answer+" and "+ qAs[x].Answer+" didn't know where "+ qAs[x + 3].Answer+" was.\n"+ qAs[x].Answer+"'s mother called all " +
-                                  "of his friends together,and they searched for " + qAs[x + 3].Answer + ".\nThey found " + qAs[x + 3].Answer + " and "+ qAs[x].Answer + " was happy. \n" +
+            madLib= "There was a boy named "+qAs[x].Answer+".\n"+ qAs[x].Answer+" liked to "+ qAs[x+1].Answer +" his "+ qAs[x + 3].Answer + " pet " + qAs[x + 7].Answer+" named "+ qAs[x + 8].Answer +" "+ qAs[x + 4].Answer+".\n" +
+                                  "One day " + qAs[x + 8].Answer +" "+ qAs[x + 2].Answer+" to the "+qAs[x + 6].Answer+" and "+ qAs[x].Answer+" didn't know where "+ qAs[x + 8].Answer+" was.\n"+ qAs[x].Answer+"'s mother called all " +
+                                  "of his friends together,and they searched for " + qAs[x + 8].Answer + ".\nThey found " + qAs[x + 8].Answer + " and "+ qAs[x].Answer + " was happy. \n" +
                                   "The End :)";
            var madLibSample = "There was a boy named {qAs[x].Answer}.\n{0} liked to {1} his pet {2} named {3} {4}.\n" +
                                   "One day {3} {5} to the {6} and {0} didn't know where {3} was.\n{0}'s mother called all " +
