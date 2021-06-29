@@ -1,53 +1,113 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Madlibs
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             AskQuestions();
         }
 
         public static void AskQuestions()
         {
-            MadlibPartsOfSpeech parts = new();
-
+            MadlibQA madlib = new();
+            madlib.qaList = CreateMadLibQAList();
+            
             bool finished;
+            int id = 0;
             do
             {
                 Console.WriteLine("Hello!\nPlease answer the following questions:\n");
-                Console.WriteLine("Enter the name of a boy.\n");
-                parts.Noun = Console.ReadLine();
-                Console.WriteLine("Enter a verb.\n");
-                parts.Verb = Console.ReadLine();
-                Console.WriteLine("Enter the past tense of a verb.\n");
-                parts.Verb2 = Console.ReadLine();
-                Console.WriteLine("Enter an adjective.\n");
-                parts.Adjective = Console.ReadLine();
-                Console.WriteLine("Enter an adverb.\n");
-                parts.Adverb = Console.ReadLine();
-                Console.WriteLine("Enter another adverb.\n");
-                parts.Adverb2 = Console.ReadLine();
-                Console.WriteLine("Enter a location.\n");
-                parts.Location = Console.ReadLine();
-                Console.WriteLine("Enter the type of a pet.\n");
-                parts.TypeOfPet = Console.ReadLine();
-                Console.WriteLine("Enter a name of pet.\n");
-                parts.NameofPet = Console.ReadLine();
+
+                foreach (var q in madlib.qaList)
+                {
+                    Console.WriteLine(q.Question);
+                    q.Answer = Console.ReadLine();
+                    q.OrderID = id++;
+                }
 
                 Console.WriteLine("For the story, press Enter.\n");
                 Console.ReadLine();
-                Console.WriteLine("There was a boy named {0}.\n{0} liked to {1} his pet {2} named {3} {4}.\n" +
-                                  "One day {3} {5} to the {6} and {0} didn't know where {3} was.\n{0}'s mother called all " +
-                                  "of his friends together,and they searched for {3}.\nThey found {3} and {0} was happy. \n" +
-                                  "The End :)", parts.Noun, parts.Verb, parts.TypeOfPet, parts.NameofPet, parts.Adverb, parts.Verb2, parts.Location);
-                Console.ReadLine();
-                Console.WriteLine("Press Enter to exit.\n");
+
+                Console.WriteLine(CreateMadLibString(madlib.qaList));
                 Console.ReadLine();
                 finished = true;
-
             } while (!finished);
+        }
+
+        public static List<QA> CreateMadLibQAList()
+        {
+            List<QA> qAs = new List<QA>();
+
+            QA qA1 = new QA();
+            qA1.Question = "Enter the name of a boy.";
+            qAs.Add(qA1);
+
+            QA qA2 = new QA();
+            qA2.Question = "Enter a verb.";
+            qAs.Add(qA2);
+
+            QA qA3 = new QA();
+            qA3.Question = "Enter the past tense of a verb.";
+            qAs.Add(qA3);
+
+            QA qA4 = new QA();
+            qA4.Question = "Enter an adjective.";
+            qAs.Add(qA4);
+
+            QA qA5 = new QA();
+            qA5.Question = "Enter an adverb.";
+            qAs.Add(qA5);
+
+            QA qA6 = new QA();
+            qA6.Question = "Enter another adverb.";
+            qAs.Add(qA6);
+
+            QA qA7 = new QA();
+            qA7.Question = "Enter a location.";
+            qAs.Add(qA7);
+
+            QA qA8 = new QA();
+            qA8.Question = "Enter the type of pet.";
+            qAs.Add(qA8);
+
+            QA qA9 = new QA();
+            qA9.Question = "Enter the name of the pet.";
+            qAs.Add(qA9);
+
+            return qAs;
+        }
+
+        public static List<QA> CreateMadLibQAListFromQuestionList(List<string> questions)
+        {
+            List<QA> qAs = new List<QA>();
+            foreach(var q in questions)
+            {
+                QA qA = new QA();
+                qA.Question = q;
+                qAs.Add(qA);
+            }
+
+            return qAs;
+        }
+        public static string CreateMadLibString(List<QA> qAs)
+        {
+            int x = 0;
+            string madLib = "";
+            madLib= "There was a boy named"+qAs[x].Answer+".\n"+ qAs[x].Answer+" liked to"+ qAs[x+1].Answer +" his pet" + qAs[x + 2].Answer+" named "+ qAs[x + 3].Answer +" "+ qAs[x + 4].Answer+".\n" +
+                                  "One day " + qAs[x + 3].Answer + qAs[x + 4].Answer+" to the "+qAs[x + 5].Answer+" and "+ qAs[x].Answer+" didn't know where "+ qAs[x + 3].Answer+" was.\n"+ qAs[x].Answer+"'s mother called all " +
+                                  "of his friends together,and they searched for " + qAs[x + 3].Answer + ".\nThey found " + qAs[x + 3].Answer + " and "+ qAs[x].Answer + " was happy. \n" +
+                                  "The End :)";
+           var madLibSample = "There was a boy named {qAs[x].Answer}.\n{0} liked to {1} his pet {2} named {3} {4}.\n" +
+                                  "One day {3} {5} to the {6} and {0} didn't know where {3} was.\n{0}'s mother called all " +
+                                  "of his friends together,and they searched for {3}.\nThey found {3} and {0} was happy. \n" +
+                                  "The End :)";
+            return madLib;
         }
     }
 }
