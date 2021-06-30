@@ -19,7 +19,7 @@ namespace Madlibs
         {
             MadlibQA madlib = new();
             madlib.qaList = CreateMadLibQAList();
-            
+
             bool finished;
             int id = 0;
             do
@@ -36,7 +36,9 @@ namespace Madlibs
                 Console.WriteLine("For the story, press Enter.\n");
                 Console.ReadLine();
 
-                Console.WriteLine(CreateMadLibString(madlib.qaList));
+                // Console.WriteLine(CreateMadLibString(madlib.qaList));
+                Console.WriteLine(ParseAndCreateMadLibString(madlib.qaList));
+
                 Console.ReadLine();
                 finished = true;
             } while (!finished);
@@ -88,7 +90,7 @@ namespace Madlibs
         public static List<QA> CreateMadLibQAListFromQuestionList(List<string> questions)
         {
             List<QA> qAs = new List<QA>();
-            foreach(var q in questions)
+            foreach (var q in questions)
             {
                 QA qA = new QA();
                 qA.Question = q;
@@ -99,56 +101,53 @@ namespace Madlibs
         }
         public static string CreateMadLibString(List<QA> qAs)
         {
-            //int x = 0;
+            int x = 0;
             string madLib = "";
-            //madLib= "There was a boy named "+qAs[x].Answer+".\n"+ qAs[x].Answer+" liked to "+ qAs[x+1].Answer +" his "+ qAs[x + 3].Answer + " pet " + qAs[x + 7].Answer+" named "+ qAs[x + 8].Answer +" "+ qAs[x + 4].Answer+".\n" +
-            //                      "One day " + qAs[x + 8].Answer +" "+ qAs[x + 2].Answer+" to the "+qAs[x + 6].Answer+" and "+ qAs[x].Answer+" didn't know where "+ qAs[x + 8].Answer+" was.\n"+ qAs[x].Answer+"'s mother called all " +
-            //                      "of his friends together,and they searched for " + qAs[x + 8].Answer + ".\nThey found " + qAs[x + 8].Answer + " and "+ qAs[x].Answer + " was happy. \n" +
-            //                      "The End :)";
 
             madLib = "There was a boy named " + qAs[0].Answer + ".\n" + qAs[0].Answer + " liked to " + qAs[1].Answer + " his " + qAs[3].Answer + " pet " + qAs[7].Answer + " named " + qAs[8].Answer + " " + qAs[4].Answer + ".\n" +
                       "One day " + qAs[8].Answer + " " + qAs[2].Answer + " to the " + qAs[6].Answer + " and " + qAs[0].Answer + " didn't know where " + qAs[8].Answer + " was.\n" + qAs[0].Answer + "'s mother called all " +
                       "of his friends together,and they searched for " + qAs[8].Answer + ".\nThey found " + qAs[8].Answer + " and " + qAs[x].Answer + " was happy. \n" +
                       "The End :)";
-            var madLibSample = "There was a boy named {qAs[x].Answer}.\n{0} liked to {1} his pet {2} named {3} {4}.\n" +
-                                  "One day {3} {5} to the {6} and {0} didn't know where {3} was.\n{0}'s mother called all " +
-                                  "of his friends together,and they searched for {3}.\nThey found {3} and {0} was happy. \n" +
-                                  "The End :)";
+            //var madLibSample = "There was a boy named {qAs[x].Answer}.\n{0} liked to {1} his pet {2} named {3} {4}.\n" +
+            //                      "One day {3} {5} to the {6} and {0} didn't know where {3} was.\n{0}'s mother called all " +
+            //                      "of his friends together,and they searched for {3}.\nThey found {3} and {0} was happy. \n" +
+            //                      "The End :)";
             return madLib;
         }
-    
-    public static string ParseAndCreateMadLibString(List<QA> qAs, string string2Parse)
-    {
-        int x = 0;
-        string madLib = "";
-        StringReader reader;
-        char c;
 
-        madLib = "There was a boy named *.* liked to * his pet * named * *.\n" +
-                               "One day * * to the * and * didn't know where * was.\n*'s mother called all " +
-                               "of his friends together,and they searched for *.\nThey found * and * was happy. \n" +
-                               "The End :)";
+        public static string ParseAndCreateMadLibString(List<QA> qAs, string string2Parse="")
+        {
+            int x = 0;
+            string madLib = "";
+            StringReader reader;
+            char c;
+            QA nQA;
+
+            //madLib = "There was a boy named *.* liked to * his pet * named * *.\n" +
+            //                       "One day * * to the * and * didn't know where * was.\n*'s mother called all " +
+            //                       "of his friends together,and they searched for *.\nThey found * and * was happy. \n" +
+            //                       "The End :)";
+
+            madLib = "There was a boy named 0.\n0 liked to 1 his 3 pet 7 named 8 4.\n" +
+                                      "One day 8 2 to the 6 and 0 didn't know where 8 was.\n0's mother called all " +
+                                      "of his friends together,and they searched for 8.\nThey found 8 and 0 was happy. \n" +
+                                      "The End :)";
             //for debugging puroses
-          string2Parse = madLib;
-          reader  = new StringReader(string2Parse);
-
-            //while (!string2Parse.Contains("*"))
-            //{
-
-            //}
-
-            //check string for the *; if * exists, replace with
+            string2Parse = madLib;
+            reader = new StringReader(string2Parse);
             while (reader.Peek() != -1)
             {
-               // ((reader.Read()) != -1)
-            {  c = (char)reader.Read();
+                {
+                    c = (char)reader.Read();
+                    if (Char.GetNumericValue(c) != -1)//if c is a number
+                    {
+                        nQA = qAs.Find(x => x.OrderID ==(int) Char.GetNumericValue(c));
+                        string2Parse = string2Parse.Replace(c.ToString(), nQA.Answer);
 
-                    if (c.Equals("*")) {
-                   // if (Char.GetNumericValue(c)!=-1)//if c is a number
-                    { 
-                        string2Parse = string2Parse.Replace("*", qAs[x].Answer);
-                        x++; }
-                } }
-            return madLib;
+                    }
+                }
+            }
+            return string2Parse;
+        }
     }
 }
