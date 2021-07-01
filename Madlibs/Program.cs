@@ -99,6 +99,10 @@ namespace Madlibs
 
             return qAs;
         }
+
+        //ED-06/30-Need to rewrite to take multiple MadLibs
+        //Need to re-write as a for loop that goes through the question list and based on the id, populates the madLib.
+        //The opposite of the way I implemented it.
         public static string CreateMadLibString(List<QA> qAs)
         {
             int x = 0;
