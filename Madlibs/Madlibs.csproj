@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MadlibPartsOfSpeech.cs" />
     <Compile Remove="Program_v1.cs" />
   </ItemGroup>
 
