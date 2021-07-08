@@ -5,17 +5,23 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace Madlibs
 {
-    class Program
+   public class Program
     {
+        //private readonly IConfiguration _configuration;
+        
 
-        public static void Main(string[] args)
-        {
+        public static void Main(string[] args)  {
             Data madlibData = new Data();
 
-            ProcessData.AskQuestions(ProcessData.SelectMadLibFromList(madlibData.GenerateMadLibInfo()));
+            //ED-Need to figure out how to or whether I should even bring IConfiguration into this class
+            DatabaseData databaseData = new DatabaseData();
+
+            //ProcessData.AskQuestions(ProcessData.SelectMadLibFromList(madlibData.GenerateMadLibInfo()));
+            ProcessData.AskQuestions(ProcessData.SelectMadLibFromList(databaseData.CreateMadLibListFromSQL()));//CreateMadLibListFromSQL
         }
         
     }

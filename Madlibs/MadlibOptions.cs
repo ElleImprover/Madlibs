@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Madlibs
 {
-   public class QA
+   public class MadlibOptions
     {
-        public string Question { get; set; }
-        public string Answer { get; set; }
-        public int OrderID { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
 
     }
-
 }

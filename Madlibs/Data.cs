@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Madlibs
 {
+
+    //Microsoft documentation for ADO.NET
+
     public class Data
     {
         public List<MadlibQA> GenerateMadLibInfo()
@@ -86,10 +89,10 @@ namespace Madlibs
             madlib.qaList = CreateMadLibQAListFromQuestionList(questions);
             madlib.ID = id;
             madlib.Name = name;
-            madlib.MadLib = madLib;
+            madlib.MadLib = madLib;//Call to database
             return madlib;
         }
-        public static List<QA> CreateMadLibQAListFromQuestionList(List<string> questions)
+        public static List<QA> CreateMadLibQAListFromQuestionList(List<string> questions)//Generate list with call to database
         {
             List<QA> qAs = new List<QA>();
             foreach (var q in questions)
@@ -101,6 +104,8 @@ namespace Madlibs
 
             return qAs;
         }
+
+        
 
 
     }
