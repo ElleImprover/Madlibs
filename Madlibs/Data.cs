@@ -17,16 +17,16 @@ namespace Madlibs
             List<string> questionList2 = CreateQuestionListGirl();
             List<string> questionList3 = CreateQuestionListLife();
 
-            string madLibstringBoy = "There was a boy named 0.\n0 liked to 1 his 3 pet 7 named 8 4.\n" +
-                                      "One day 8 2 to the 6 and 0 didn't know where 8 was.\n0's mother called all " +
-                                      "of his friends together,and they searched for 8.\nThey found 8 and 0 was happy. \n" +
+            string madLibstringBoy = "There was a boy named 0.\n0 liked to 1 his 3 pet 7 named 5 4.\n" +
+                                      "One day 5 2 to the 6 and 0 didn't know where 5 was.\n0's mother called all " +
+                                      "of his friends together,and they searched for 5.\nThey found 5 and 0 was happy. \n" +
                                       "The End :)";
-            string madLibstringGirl = "There was a girl named 0.\n0 liked to 1 her 3 pet 7 named 8 4.\n" +
-                                      "One day 8 2 to the 6 and 0 didn't know where 8 was.\n0's mother called all " +
-                                      "of her friends together,and they searched for 8.\nThey found 8 and 0 was happy. \n" +
+            string madLibstringGirl = "There was a girl named 0.\n0 liked to 1 her 3 pet 7 named 5 4.\n" +
+                                      "One day 5 2 to the 6 and 0 didn't know where 5 was.\n0's mother called all " +
+                                      "of her friends together,and they searched for 5.\nThey found 5 and 0 was happy. \n" +
                                       "The End :)";
             string madLibLife = "One day 0 and 1 were walking from 2 and they discovered a 3.\nThe 3 4 at them so they 5 home. " +
-                                       "0 and 1 learned to that day 6.";
+                                       "0 and 1 learned to 6 that day.";
 
             MadlibQA madlib1 = CreateMadLib(1, "Boy with Pet", madLibstringBoy, questionList1);
             MadlibQA madlib2 = CreateMadLib(2, "Girl with Pet", madLibstringGirl, questionList2);
@@ -92,7 +92,7 @@ namespace Madlibs
             madlib.MadLib = madLib;//Call to database
             return madlib;
         }
-        public static List<QA> CreateMadLibQAListFromQuestionList(List<string> questions)//Generate list with call to database
+        public static List<QA> CreateMadLibQAListFromQuestionList(List<string> questions) //Generate list with call to database
         {
             List<QA> qAs = new List<QA>();
             foreach (var q in questions)

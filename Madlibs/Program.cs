@@ -10,10 +10,7 @@ using Microsoft.Extensions.Configuration;
 namespace Madlibs
 {
    public class Program
-    {
-        //private readonly IConfiguration _configuration;
-        
-
+    { 
         public static void Main(string[] args)  {
             Data madlibData = new Data();
 
