@@ -14,7 +14,6 @@ namespace Madlibs
         public static void Main(string[] args)  {
             Data madlibData = new Data();
 
-            //ED-Need to figure out how to or whether I should even bring IConfiguration into this class
             DatabaseData databaseData = new DatabaseData();
 
             //ProcessData.AskQuestions(ProcessData.SelectMadLibFromList(madlibData.GenerateMadLibInfo()));

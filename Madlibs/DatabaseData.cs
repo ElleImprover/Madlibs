@@ -49,7 +49,10 @@ namespace Madlibs
                         madlib = new MadlibQA();
                         madlib.Name = madLibName;
                         madlib.ID = Convert.ToInt32(reader["madlibID"]);
-                        madlib.MadLib = reader["Madlib"].ToString();
+                        var madLibNL   = reader["Madlib"].ToString();
+                        madlib.MadLib=madLibNL.Replace("\\n", "\n");
+
+                        //madlib.MadLib = reader["Madlib"].ToString();
                         QA qA = new QA();
                         qA.Question = reader["question"].ToString();
                         qA.OrderID = Convert.ToInt32(reader["orderid"]);
